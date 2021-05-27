@@ -1,4 +1,4 @@
-# GreetR JS Framework
+# GreetR JS/JQuery Framework
 
 ## Generates formal/informal greetings.
 

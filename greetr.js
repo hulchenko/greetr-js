@@ -1,6 +1,6 @@
 (function (global, $) {
   var Greetr = function (firstname, lastname, language) {
-    //function varructor to generate the object
+    //function constructor to generate the object
     return new Greetr.init(firstname, lastname, language);
   };
 
@@ -24,12 +24,14 @@
     ru: 'Добро пожаловать,',
   };
 
+  // prototype holds methods
   Greetr.prototype = {
     fullName: function () {
       return this.firstname + ' ' + this.lastname;
     },
-
+    // 'this' refers to the calling object at execution time
     validate: function () {
+      // check that is a valid language
       if (!lang.includes(this.language)) {
         throw 'Language is not supported!';
       }
@@ -44,6 +46,7 @@
 
     greet: function (formal) {
       var msg;
+      //if false - then non-formal
       if (formal) {
         msg = this.greetingFormal();
       } else {
@@ -52,6 +55,7 @@
       if (console) {
         console.log(msg);
       }
+      // chainable method returns its own containing object
       return this;
     },
     log: function () {
@@ -65,6 +69,22 @@
       this.validate();
       return this;
     },
+    onScreenGreeting: function (selector, formal) {
+      if (!$) {
+        throw 'jQuery is not working';
+      }
+      if (!selector) {
+        throw 'Missing jQuery selector';
+      }
+      var msg;
+      if (formal) {
+        msg = this.greetingFormal();
+      } else {
+        msg = this.greeting;
+      }
+      $(selector).html(msg);
+      return this;
+    },
   };
 
   Greetr.init = function (firstname, lastname, language) {
@@ -72,9 +92,11 @@
     self.firstname = firstname || '';
     self.lastname = lastname || '';
     self.language = language || 'en';
+
+    self.validate();
   };
-
+  //jQuery trick so we don't have to use the 'new' keyword
   Greetr.init.prototype = Greetr.prototype;
-
+  // attach our Greetr to the global object, and provide a shorthand '$G'
   global.Greetr = global.G$ = Greetr;
 })(window, jQuery);
