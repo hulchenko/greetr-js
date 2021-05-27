@@ -29,9 +29,9 @@
       return this.firstname + ' ' + this.lastname;
     },
 
-    langCheck: function () {
+    validate: function () {
       if (!lang.includes(this.language)) {
-        throw 'Language is not supported';
+        throw 'Language is not supported!';
       }
     },
     greeting: function () {
