@@ -1,5 +1,5 @@
 let g = G$('Vadym', 'Hulchenko');
-g.greet().setLang('en').greet(true).log();
+g.greet().setLang('en').greet(true).log(); //all functions tests for the console.log()
 
 $('#login').click(function () {
   var loginGreet = G$('Vadym', 'Hulchenko');

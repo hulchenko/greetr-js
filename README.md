@@ -5,7 +5,3 @@
 ## JQuery support.
 
 ## Language Support: EN, FR, RU.
-
-### Usage:
-
-'G$()' to type.
